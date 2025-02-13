@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layou_loginuser.cshtml";
+}
+@*<div ng-controller="loginController">
+        <div ng-init="Login();"></div>
+    </div>*@
+
+
+<link href="~/Content/CSS/LoginCSS.css" rel="stylesheet" />
+<section ng-controller="loginController">
+    <div class="container">
+        <div class="row">
+            @*<div class="col-md-6 image_container">
+                <img src="~/Content/Image/Login2.png" alt="Image Description" class="img-fluid" />
+            </div>*@
+            <div class="col-md-6 login-form-container">
+                <div class="login-form-wrapper">
+                    <div class="header-form">
+                        <center>
+                            <img src="~/Content/Image/Vxi-logo(3).png" class="img-fluid login-form-logo" style="margin-top: 3%;" />
+                            <h2 style="color: black !important; font-size: 30px;" class="text-secondary text-center login-form-title">NEW HIRE SURVEY</h2>
+                        </center>
+                    </div>
+                    <div class="body-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="Hrid"><strong>HRID:</strong></label>
+                                <input type="text" class="form-control" id="Hrid" aria-describedby="Hrid" placeholder="Hrid" ng-model="loginInfo.Hrid" style="width: 100%; max-width: 100%;" ng-change="resetHridValidation()" maxlength="20">
+                                <span id="req_hrid" style="color: red; display: none;">Hrid is required.</span>
+                            </div>
+               
+                            <div class="form-group">
+                                <label for="hiredDate"><strong>Hire Date:</strong></label>
+                                <input type="password" class="form-control" id="hiredDate" ng-model="loginInfo.Hiredate" placeholder="MMDDYYYY" maxlength="8" style="width: 100%; max-width: 100%;" ng-change="resetbdayValidation()">
+                                <span id="req_bday" style="color: red; display: none;">Birth Date is required.</span>
+                            </div>
+
+                            <center>
+                                <button style="background-color: #FF4500; color: white; border-radius: 20px; font-size: 14px; padding: 12px 45px; letter-spacing: 1px; text-transform: uppercase; transition: transform 80ms ease-in;" type="submit" class="btn" ng-click="Login()"><strong>Login</strong></button>
+                            </center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

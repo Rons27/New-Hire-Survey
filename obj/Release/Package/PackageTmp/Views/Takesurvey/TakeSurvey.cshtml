@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "TakeSurvey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .scrollable-container {
+        max-height: 81vh; /* Set the desired height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        border: 1px solid #ddd; /* Optional: add a border to visualize the container */
+        padding: 10px; /* Optional: add padding for better appearance */
+    }
+
+    .table {
+        width: 100%; /* Ensure the table takes the full width */
+    }
+
+        .table td {
+            border: none; /* Remove borders from table cells */
+        }
+
+        .table select {
+            width: 100%; /* Ensure select elements take the full width */
+        }
+
+    .comment-container {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center horizontally */
+        justify-content: center; /* Vertically center if needed (optional) */
+    }
+
+    .TL-container {
+        /* display: flex; */
+        flex-direction: column;
+        align-items: flex-start;
+        width: 103vh;
+    }
+
+    .comment-container button {
+        margin-top: 10px; /* Add some space between textarea and button (optional) */
+    }
+
+    .line_hr {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .radio-group label {
+        /*        display: block;*/
+        margin-bottom: 10px;
+        padding-right: 10px;
+        margin-right: 20px;
+    }
+
+    .btn-sub {
+        color: #fff;
+        background-color: #157347;
+        border-color: #146c43;
+        font-size: 15px;
+        padding: 12px 51px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+        .btn-sub:hover {
+            color: #fff;
+            background-color: #157347;
+        }
+</style>
+
+<div class="container-fluid motherDiv" ng-controller="SurveyController">
+    <div class="vxi-div" ng-init="GetSurvey()">
+        <div class="row">
+            <div class="col-xs-4 col-md-6 col-lg-12 p-5 scrollable-container">
+                <h2 class="text-center"> Survey Questionnaire</h2>
+                <form name="myForm" id="myForm">
+                    <table class="table">
+                        <tbody>
+                            @*<tr ng-repeat="q in Question">
+                                    <td style="border: none;">
+                                        <p>{{q.Title}}</p>
+                                    </td>
+                                    <td style="border: none;">
+                                        <select required="required" style="width: 100%" class="form-control" ng-model="SelectAnswers[q.Id]" ng-change="onQuestionAnswered()">
+                                            <option value="" selected disabled hidden>Select Answer</option>
+                                            <option value="Strongly Agree">Strongly Agree</option>
+                                            <option value="Agree">Agree</option>
+                                            <option value="Neutral">Neutral</option>
+                                            <option value="Disagree">Disagree</option>
+                                            <option value="Agree Disagre">Agree Disagree</option>
+                                        </select>
+                                    </td>
+                                </tr>*@
+                            @*<tr ng-repeat="q in Question">
+                                    <td style="border: none;">
+                                        <strong>{{q.Id}}. {{q.Title}}</strong>
+                                        <div class="col-lg-12 radio-group" style="padding: 1%;">
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Strongly Agree" ng-change="onQuestionAnswered()">
+                                                Strongly Agree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Agree" ng-change="onQuestionAnswered()">
+                                                Agree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Neutral" ng-change="onQuestionAnswered()">
+                                                Neutral
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Disagree" ng-change="onQuestionAnswered()">
+                                                Disagree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Strongly Disagree" ng-change="onQuestionAnswered()">
+                                                Agree Disagree
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>*@
+
+
+                            <!-- Repeat rows as needed -->
+
+
+                            <tr ng-repeat="(category, questions) in groupedQuestions">
+                                <td style="border: none;">
+                                    <strong>{{category}}</strong>
+                                    <br />
+                                    <br />
+                                    <div ng-repeat="(index, q) in questions track by $index" style="padding:1.5vh;">
+                                        @*<strong>{{q.Title}}</strong>*@
+                                        <strong>{{q.Id}}. {{q.Title}}</strong>
+                                        <div class="col-lg-12 radio-group" style="padding: 1%;">
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Strongly Agree" ng-change="onQuestionAnswered()">
+                                                Strongly Agree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Agree" ng-change="onQuestionAnswered()">
+                                                Agree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Neutral" ng-change="onQuestionAnswered()">
+                                                Neutral
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Disagree" ng-change="onQuestionAnswered()">
+                                                Disagree
+                                            </label>
+                                            <label>
+                                                <input type="radio" ng-model="SelectAnswers[q.Id]" value="Strongly Disagree" ng-change="onQuestionAnswered()">
+                                                Strongly Disagree
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+                        </tbody>
+
+                    </table>
+                    @*<hr class="line_hr" style=" background-color: #e55417; ">*@
+                    <!--<div class="col-lg- TL-container">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <label for="tlhrid">Trainer HRID:</label>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="name" value="" placeholder="Ex: 4225835" ng-model="searcNewhHrid_input" ng-change="validateTLHRID()" />-->
+                    @*<input type="text" class="form-control" style="width:40%;" placeholder="Ex: 4225835" id="search-hrid" ng-model="searcNewhHrid_input" placeholder="HRID" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">*@
+
+                    <!--<button type="button" ng-disabled="!searcNewhHrid_input" class="btn btn-primary" ng-click="searchUser()">Search</button>
+                    </div>-->
+                    @*<input type="text" class="form-control" name="name" value="" placeholder="Ex: 4225835" ng-model="TLHRID" ng-change="validateTLHRID()" />*@
+                    <!--</div>
+
+                            <div class="col-auto">
+                                <label for="tlhrid">Full Name:</label>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="text" disabled class="form-control" name="name" value="" ng-model="Fullname" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>-->
+
+
+                    <br />
+
+                    <span style="font-size: 12px; color: #666; text-align:left;">Limit:</span>
+                    <span ng-bind="250 - comment.length" style="font-size: 12px; color: #666; text-align:left;"></span>
+                    <textarea required rows="4" ng-model="comment" style="width: 100%" placeholder="Comments" maxlength="250"></textarea>
+                    <div class="comment-container ">
+
+
+                        <button class="btn btn-sub"
+                                @*ng-disabled="answeredQuestionsCount !== Question.length || !comment || !TLHRID"*@
+                                ng-click="SaveAnswers();">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .no-click {
+        cursor: default !important;
+    }
+    #notification-container {
+        position: fixed;
+        top: -110px;
+        left: 0;
+        width: 100%;
+        height: 106%;
+        background-color: rgb(0 0 0 / 78%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #notification {
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        width: 85vh;
+        max-width: 75%;
+        font-family: Arial, sans-serif;
+        border-color: #e55417;
+    }
+
+    .notification-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px; /* Space between header and content */
+        color: #333; /* Header text color */
+    }
+
+        .notification-header i {
+            font-size: 24px;
+            margin-right: 10px; /* Space between icon and text */
+            color: orange; /* Icon color */
+        }
+
+        .notification-header h2 {
+            font-size: 20px;
+            margin: 0; /* Remove default margin */
+        }
+
+    p {
+        line-height: 1.5; /* Improve readability */
+    }
+    .Acknowledge_font {
+        font-size: 20px;
+        font-family: 'Arial', sans-serif
+    }
+    .button-container {
+        text-align: center; /* Centers the content within the container */
+    }
+    .title-container {
+/*        padding-left: 5vh;*/
+    }
+
+    .VXI-BOLD {
+        font-weight: 900 !important;
+    }
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        padding: 9px;
+        margin-left: -46px;
+        margin-top: calc(1% - -151px);
+    }
+
+</style>
+<div class="container-fluid justify-content-center" ng-controller="SurveyController">
+  
+        <!--<div ng-init="GetStatus()">
+            <div class="col-md-12 title-container text-center">
+                <p class="lead welcome-text">
+                    Welcome to the VXI FAMILY!
+                    As a new hire, we’re excited to have you on board. As part of our commitment to creating an exceptional employee experience, we invite you to participate in our New Hire Survey. Your feedback is valuable and will help us improve our processes. Thank you! 😊
+
+                </p>
+
+
+                <button ng-class="{'d-none': status}" class="btn btn-orange" ng-click="showTakeSurveyNotification()">
+                    <strong>Take the survey</strong>
+                </button>-->
+
+                <!-- Button to show survey completed -->
+                <!--<button ng-class="{'d-none': !status}" class="btn btn-secondary no-click">
+                    <strong>SURVEY COMPLETED</strong>
+                </button>
+
+
+            </div>
+        </div>-->
+
+        <div class="container" ng-init="GetStatus()">
+            <div class="row justify-content-center align-items-center main-container text-center">
+                <div class="col-md-6 title-container card-centerd">
+                    <p class="lead welcome-text">
+                        Welcome to the <strong class="VXI-BOLD"> VXI FAMILY!</strong>
+                        As a new hire, we’re excited to have you on board. As part of our commitment to creating an exceptional employee experience, we invite you to participate in our <strong class="VXI-BOLD"> New Hire Survey. </strong> Your feedback is valuable and will help us improve our processes. Thank you! 😊
+
+                    </p>
+                    <button ng-class="{'d-none': status}" class="btn btn-orange" ng-click="showTakeSurveyNotification()">
+                        <strong>Take the survey</strong>
+                    </button>
+
+                    <!-- Button to show survey completed -->
+                    <button ng-class="{'d-none': !status}" disabled class="btn btn-secondary no-click">
+                        <strong>SURVEY COMPLETED</strong>
+                    </button>
+
+                </div>
+                <div class="col-md-6 image_container">
+                    <img src="~/Content/Image/Survey.png" alt="Image Description" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="notification-container" ng-show="showNotification">
+            <div id="notification">
+                <div class="notification-header">
+                    <i class="fa fa-star" aria-hidden="true"></i> <h2>Welcome to the VXI FAMILY!</h2>
+                </div>
+                <p class="Acknowledge_font ">As part of our commitment to creating an exceptional employee experience, we invite you to participate in our New Hire Survey.</p>
+                <p class="Acknowledge_font ">
+                    Your feedback is valuable and will help us improve our processes.
+                    We guarantee the confidentiality. There is no information on the survey that will identify or connect you with your responses.
+                </p>
+                <p class="Acknowledge_font "> Thank you!
+                </p>
+
+                <div class="button-container">
+                    <button class="btn btn-primary" ng-click="redirectToSurvey()">Acknowledge</button>
+                </div>
+            </div>
+        </div>
+
+        @*<a href="@Url.Action("TakeSurvey", "Takesurvey")" class="btn btn-warning btn-lg">
+            <i class="fas fa-check"></i> Take Survey
+        </a>*@
+
+
+
+        @*<div class="card text-center bg-secondary">
+            <div class="card-body">
+                <h5 class="card-title">Survey Completed</h5>
+                <a href="#" class="btn btn-secondary" disabled>Survey Completed</a>
+            </div>
+        </div>*@
+        @*<img src="~/Content/Image/Vixie---Finger-Hear1t.png" height="550" width="500"  />*@
+
+
+</div>

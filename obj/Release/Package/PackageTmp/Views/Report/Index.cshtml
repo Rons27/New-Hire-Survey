@@ -1,0 +1,423 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn-custom-blue {
+        background-color: blue;
+        color: white;
+        border: none;
+    }
+
+        .btn-custom-blue:hover {
+            background-color: darkblue;
+        }
+
+    div.dt-buttons > .dt-button, div.dt-buttons > div.dt-button-split .dt-button {
+        background-color: #0d6efd !important;
+        color: white !important;
+        border: none;
+        position: relative;
+        display: inline-block;
+        box-sizing: border-box;
+        margin-left: .167em;
+        margin-right: .167em;
+        margin-bottom: .333em;
+        padding: .5em 1em;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: .88em;
+        line-height: 1.6em;
+        color: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-decoration: none;
+        outline: none;
+        text-overflow: ellipsis
+    }
+
+    .tab-container {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .tab:hover {
+            background-color: #f0f0f0;
+        }
+
+        .tab.active {
+            background-color: #ccc;
+            border-bottom: 2px solid #000;
+        }
+
+    .tab-content {
+        /* padding: 20px;*/
+        /*      display: none;*/
+    }
+
+        .tab-content.ng-show {
+            /*        display: block;*/
+        }
+
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+        list-style: none;
+    }
+
+    li.select2-selection__choice {
+        font-size: 15px !important;
+        font-weight: 700;
+        background-color: #e55417 !important;
+        border: 1px solid #006fe6 !important;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 0 5px;
+        color: #ffffff !important;
+    }
+
+ /*   span.select2.select2-container.select2-container--bootstrap-5.select2-container--below.select2-container--open {
+        height: 8vh;
+        overflow: auto;
+    }*/
+</style>
+
+
+
+
+<div class="container-fluid motherDiv p2" ng-controller="Reportctrl" ng-init="Getsite(); GetinfoSurvey();GetYear();GetLob(); Getwave()">
+    <div class="vxi-div">
+        <div class="row">
+            <div class="col-xs-4 col-md-6 col-lg-12 p-3 scrollable-container">
+                <div class="container-fluid tab-content" id="tab1">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <h3 style="color:orange;"><strong>REPORT</strong></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-container">
+                        <div class="tab" ng-class="{'active': isActiveTab('tab1')}" ng-click="setActiveTab('tab1')">
+                            Report Date Range
+                        </div>
+                        <div class="tab" ng-class="{'active': isActiveTab('tab2')}" ng-click="setActiveTab('tab2')">
+                            Report Month and Year
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-2" ng-show="isActiveTab('tab1')">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong> From</strong></label>
+                                                    <input type="date" id="date_tab1" class="form-control" ng-model="ReportFilter.FromDate" />
+                                                </div>
+
+                                                <div class="form-line">
+                                                    <label><strong>Status</strong> </label>
+                                                    <select class="form-control" ng-model="ReportFilter.Status">
+                                                        <option value="" selected>Select Status...</option>
+                                                        @*<option value="ALL" style="height: 200px; overflow-y: scroll;">ALL</option>*@
+                                                        <option value="Pending ">Pending</option>
+                                                        <option value="Expired ">Expired</option>
+                                                        <option value="Completed ">Completed</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-2" ng-show="isActiveTab('tab1')">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>To</strong> </label>
+                                                    <input type="date" id="date_tab2" class="form-control" ng-model="ReportFilter.ToDate" />
+                                                </div>
+
+
+                                                <div class="d-flex align-items-end justify-content-end h-100 gap-2 m-4">
+                                                    <button type="button" class="btn btn-success waves-effect"
+                                                            ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                            ng-click="GetinfoSurvey();">
+                                                        Filter
+                                                    </button>
+
+
+                                                    <button type="button" class="btn btn-success waves-effect"
+                                                            ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                            ng-click="GetReports();">
+                                                        Excel
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="Clear();GetinfoSurvey();">CLEAR</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2" ng-show="isActiveTab('tab2')">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label> <strong> Month </strong></label>
+                                                    <select class="form-control" ng-model="ReportFilter.Months">
+                                                        <option value="" selected>ALL</option>
+                                                        <option ng-repeat="item in months" ng-value="item.id" ng-bind="item.name"></option>
+                                                    </select>
+
+                                                </div>
+                                                <div class="form-line">
+                                                    <label><strong>Status</strong> </label>
+                                                    <select class="form-control" ng-model="ReportFilter.Status">
+                                                        <option value="" selected>Select Status...</option>
+                                                        @*<option value="ALL" style="height: 200px; overflow-y: scroll;">ALL</option>*@
+                                                        <option value="Pending ">Pending</option>
+                                                        <option value="Expired ">Expired</option>
+                                                        <option value="Completed ">Completed</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-2" ng-show="isActiveTab('tab2')">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>Year </strong> </label>
+                                                    <select class="form-control" ng-model="ReportFilter.Year">
+                                                        <option value="" selected>ALL</option>
+                                                        <option ng-repeat="item in Yearlist" ng-value="item.Year" ng-bind="item.Year"></option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="d-flex align-items-end justify-content-end h-100 gap-2 m-4">
+                                                    <button type="button" class="btn btn-success waves-effect"
+                                                            ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                            ng-click="GetinfoSurvey();">
+                                                        Filter
+                                                    </button>
+
+
+                                                    <button type="button" class="btn btn-success waves-effect"
+                                                            ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                            ng-click="GetReports();">
+                                                        Excel
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="Clear();GetinfoSurvey();">CLEAR</button>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>Site </strong> </label>
+                                                    <div style="max-height: 15vh; overflow: auto; ">
+                                                        <select class="form-select left-drop select2" id="sitesdrop" data-placeholder="Choose Site" multiple="multiple" ng-model="ReportFilter.Site" ng-change="teamlist()">
+                                                            <option ng-repeat="item in Sites" ng-value="item.Location" ng-bind="item.Site "></option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong> Program </strong></label>
+                                                    <div style="max-height: 15vh; overflow: auto; ">
+                                                        <select class="form-select" id="Program" data-placeholder="Choose Program" multiple ng-model="ReportFilter.Lobs" ng-change="Wavedisable()">
+                                                            <option ng-repeat="item in Lobslist | orderBy:'Department'" ng-value="item.Department" ng-bind="item.Department"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong> Wave </strong></label>
+                                                    <div style="max-height: 15vh; overflow: auto; ">
+                                                        <select ng-disabled="Wavelist == ''" class="form-select" id="wavedrop" data-placeholder="Choose Wave" multiple ng-model="ReportFilter.Wave">
+                                                            <option ng-repeat="item in Wavelist | orderBy:'item'" ng-value="item" ng-bind="item"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>Status</strong> </label>
+                                                    <select class="form-control" ng-model="ReportFilter.Status">
+                                                        <option value="" selected>Select Status...</option>-->
+                                                        @*<option value="ALL" style="height: 200px; overflow-y: scroll;">ALL</option>*@
+                                                        <!--<option value="Pending ">Pending</option>
+                                                        <option value="Expired ">Expired</option>
+                                                        <option value="Completed ">Completed</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+
+                                            </div>
+                                        </div>-->
+
+
+
+                                        @*<div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+
+                                                    <div class="d-flex align-items-end justify-content-end h-100 gap-2 m-4">
+                                                        <button type="button" class="btn btn-success waves-effect"
+                                                                ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                                ng-click="GetinfoSurvey();">
+                                                            Filter
+                                                        </button>
+
+
+                                                        <button type="button" class="btn btn-success waves-effect"
+                                                                ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                                ng-click="GetReports();">
+                                                            Excel
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary waves-effect" ng-click="Clear();GetinfoSurvey();">CLEAR</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+
+                                        <div class="row clearfix">
+
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <div class="col-xs-12 col-md-12 col-lg-12 p-1 scrollable-container ">
+                    <div class="container-fluid tab-content" id="tab1">
+                        <div class="col-lg-12 col-md-12 col-sm-1 col-xs-12">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="body">
+                                        <div class="row clearfix">
+                                            <h3 style="color:orange;"><strong>SUMMARY VIEW</strong></h3>
+                                            <div class="form-group" style="max-height: 100vh; overflow: auto;">
+                                                <div class="table-responsive" style="height: 24vh; overflow-y: auto;">
+                                                    <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                                        <thead style="background-color: #00b7c3; color: white; font-size: 16px;">
+                                                            <tr>
+                                                                <th rowspan="2" style="vertical-align: middle; text-align: center;">PROGRAM</th>
+                                                                <th colspan="1" style="text-align: center;">ENROLLED</th>
+                                                                <th colspan="2" style="text-align: center;">COMPLETED</th>
+                                                                <th colspan="2" style="text-align: center;">EXPIRED</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th style="text-align: center;">#</th>
+                                                                <th style="text-align: center;">#</th>
+                                                                <th style="text-align: center;">%</th>
+                                                                <th style="text-align: center;">#</th>
+                                                                <th style="text-align: center;">%</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-center">
+                                                            <tr ng-repeat="(lob, summary) in programSummary">
+                                                                <td>{{ lob }}</td>
+                                                                <td>{{ summary.Enrolled }}</td>
+                                                                <td>{{ summary.Completed }}</td>
+                                                                <td>{{ summary.CompletedPercentage }}%</td>
+                                                                <td>{{ summary.Expired }}</td>
+                                                                <td>{{ summary.ExpiredPercentage }}%</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot class="text-center" style="background-color: #00b7c3; color: white; font-size: 16px;">
+                                                            <tr>
+                                                                <td>GRAND TOTAL</td>
+                                                                <td>{{ grandTotal.Enrolled }}</td>
+                                                                <td>{{ grandTotal.Completed }}</td>
+                                                                <td>{{ grandTotal.CompletedPercentage }}%</td>
+                                                                <td>{{ grandTotal.Expired }}</td>
+                                                                <td>{{ grandTotal.ExpiredPercentage }}%</td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+
+                                                <div class="row clearfix">
+
+                                                    @*<div class="tab2_table">*@
+                                                    @*</div>*@
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </center>
+            <div class="col-xs-4 col-md-6 col-lg-12 p-1 scrollable-container">
+                <div class="container-fluid tab-content" id="tab1">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row clearfix">
+                            <table id="dataTable" class="table table-striped table-hover" style="width:100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"></table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>*@

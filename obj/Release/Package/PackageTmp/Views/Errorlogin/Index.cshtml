@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Error.cshtml";
+}
+<style type="text/css">
+    body {
+        font-family: 'Noto Sans', sans-serif;
+        color: #616161 /*#757575*/;
+        background-color: #eeeeee;
+    }
+
+    .container {
+        margin: auto;
+        max-width: 1024px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        position: relative;
+    }
+
+    .box {
+        width: auto;
+        height: 600px;
+        background: #fff;
+        margin-top: 50px;
+        margin-left: 100px;
+        margin-right: 100px;
+        border-radius: 5px;
+        box-shadow: 6px 18px 18px rgba(0, 0, 0, 0.08), -6px 18px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .animation {
+        margin-top: 20%;
+        display: inline-block;
+        margin-bottom: 5%;
+    }
+
+    h1 {
+        color: #fb3958;
+        font-size: 3.7em;
+        font-weight: 700;
+        text-align: center;
+        margin: 25px 0;
+        text-shadow: 2px 2px 5px #962234;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    a {
+        color: #f6921e;
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: none;
+        margin-left: 5px;
+    }
+
+    .compcontainer {
+        width: 75%;
+        height: 13rem;
+        padding: 3rem 0 0.5rem 0;
+        margin: 0 auto;
+    }
+
+        .compcontainer + smallscreen {
+            height: 10rem
+        }
+
+        .compcontainer svg {
+            max-width: 100%;
+            max-height: 100%;
+            -ms-animation: bouncy 1300ms linear infinite;
+            -webkit-animation: bouncy 1300ms linear infinite;
+            animation: bouncy 1300ms linear infinite;
+        }
+
+    @@keyframes bouncy {
+        0% {
+            -ms-transform: translateY(10px) translateX(0) rotate(0);
+            -webkit-transform: translateY(10px) translateX(0) rotate(0);
+            transform: translateY(10px) translateX(0) rotate(0);
+        }
+
+        25% {
+            -ms-transform: translateX(-10px) rotate(-10deg);
+            -webkit-transform: translateX(-10px) rotate(-10deg);
+            transform: translateX(-10px) rotate(-10deg);
+        }
+
+        50% {
+            -ms-transform: translateX(0) rotate(0deg);
+            -webkit-transform: translateX(0) rotate(0deg);
+            transform: translateX(0) rotate(0deg);
+        }
+
+        75% {
+            -ms-transform: translateX(10px) rotate(10deg);
+            -webkit-transform: translateX(10px) rotate(10deg);
+            transform: translateX(10px) rotate(10deg);
+        }
+
+        100% {
+            -ms-transform: translateY(10px) translateX(0) rotate(0);
+            -webkit-transform: translateY(10px) translateX(0) rotate(0);
+            transform: translateY(10px) translateX(0) rotate(0);
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="box">
+        <div class="compcontainer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.5 74.769">
+                <path fill="#C7CCDB" d="M58.073 74.769H32.426l6.412-19.236h12.824z" />
+                <path fill="#373F45" d="M90.5 52.063c0 1.917-2.025 3.471-4.525 3.471H4.525C2.025 55.534 0 53.98 0 52.063V3.471C0 1.554 2.026 0 4.525 0h81.449c2.5 0 4.525 1.554 4.525 3.471v48.592z" />
+                <path fill="#F1F2F2" d="M84.586 46.889c0 1.509-1.762 2.731-3.936 2.731H9.846c-2.172 0-3.933-1.223-3.933-2.731V8.646c0-1.508 1.761-2.732 3.933-2.732H80.65c2.174 0 3.936 1.225 3.936 2.732v38.243z" />
+                <path fill="#A2A7A5" d="M16.426 5.913L8.051 23h13l-6.875 12.384L26.75 46.259l-8.375-11.375L26.75 20H14.625l6.801-14.087zM68.551 49.62l-8.375-17.087h13l-6.875-12.384L78.875 9.274 70.5 20.649l8.375 14.884H66.75l6.801 14.087z" />
+            </svg>
+        </div>
+        <h1>You do not have permission to take this survey!</h1>
+        <p>Please contact the HR Department if you think this was a mistake.</p>
+        <br />
+        @*<p>If you have any questions, please e-mail <a>VXI_iTECH_Admin@vxi.com</a></p>*@
+    </div>
+
+
+</div>

@@ -1,0 +1,463 @@
+﻿body {
+    padding-top: calc(10% - 8%);
+        background-color: #f9f9f9;
+    /*    padding: 50px 0px;*/
+/*    zoom: 95%;*/
+
+}
+
+.navbar-brand h2 {
+    margin: 0;
+    /* Any other styling for the header text */
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 100%;
+}
+*/
+.vxi-footer {
+    background-color: #413D3E;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index:9999999999999;
+}
+
+.footerLogoSize {
+    height: 50px;
+    margin: 5px 0px;
+}
+
+.footerVersion {
+    position: absolute;
+    float: right;
+    bottom: 3px;
+    right: 30px;
+    color: white;
+}
+
+.logoSize {
+    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.logoPos {
+    float: left;
+    margin-left: 20px;
+    width: 50px;
+}
+
+.title {
+    all: unset;
+    font-size: 4vh;
+    font-weight: 700;
+    color: white;
+    width: max-content;
+    line-height: 3vh;
+    flex: 1;
+}
+
+.vxi-header {
+    background-color: rgb(229, 84, 23);
+}
+
+.headerPos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shine {
+    font-size: 30px;
+    color: white;
+    text-shadow: 1px 1px 1px red;
+}
+
+.motherDiv {
+    /*margin: 50px 60px !important;*/
+    margin: 64px -7px !important;
+}
+
+.vxi-div {
+    width: 90%;
+/*    height: 75vh;*/
+    margin: 0 auto;
+    /*    border-radius: 10px;*/
+    background: white;
+    /*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);*/
+    margin-top: -10px;
+}
+
+.card-size {
+    width: 30%;
+}
+
+.card-centerd {
+    margin-top: calc(-8% - -151px);
+    /*    width: 50%;
+    margin-left: calc(34% - 8%);*/
+}
+
+.bg-color {
+    background-color: rgb(229, 84, 23);
+}
+
+.btn-orange {
+    background-color: #FF4500;
+    color: white;
+    font-size: 15px;
+    padding: 12px 51px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+/*.btn-secondary {
+    color: white;
+    font-size: 15px;
+    padding: 12px 51px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+*/
+.welcome-text {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.4em; /* Slightly larger font size for readability */
+    line-height: 1.6; /* Improved line spacing for better readability */
+    margin: 20px 0; /* Margin to separate it from other elements */
+    color: #333; /* Darker color for better contrast */
+    font-family: 'Arial', sans-serif; /* Clean, modern font */
+}
+
+.custom-confirm-button {
+    background-color: green !important;
+    color: white;
+}
+
+button:where(.swal2-styled).swal2-confirm {
+    border: 0;
+    border-radius: .25em;
+    background: initial;
+    background-color: green !important;
+    color: #fff;
+    font-size: 1em;
+}
+
+.notification {
+    position: fixed; /* Keep it positioned on the screen */
+    top: 10px; /* Adjust for desired vertical position */
+    right: 10px; /* Adjust for desired horizontal position */
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+    z-index: 100; /* Ensure it's displayed above other elements */
+    width: 350px; /* Adjust width as needed */
+    max-width: 80%; /* Responsive adjustment for smaller screens */
+    animation: notification-show 0.3s ease-in-out; /* Add a smooth appearance animation (optional) */
+}
+
+@keyframes notification-show {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Animate from slightly below the viewport */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1494px !important;
+    }
+}
+
+
+
+#wifi-loader {
+    --background: #62abff;
+    --front-color: #ef4d86;
+    --front-color-in: #fbb216;
+    --back-color: #c3c8de;
+    --text-color: #414856;
+    width: 64px;
+    height: 64px;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    #wifi-loader svg {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        #wifi-loader svg circle {
+            position: absolute;
+            fill: none;
+            stroke-width: 6px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: rotate(-100deg);
+            transform-origin: center;
+        }
+
+            #wifi-loader svg circle.back {
+                stroke: var(--back-color);
+            }
+
+            #wifi-loader svg circle.front {
+                stroke: var(--front-color);
+            }
+
+        #wifi-loader svg.circle-outer {
+            height: 86px;
+            width: 86px;
+        }
+
+            #wifi-loader svg.circle-outer circle {
+                stroke-dasharray: 62.75 188.25;
+            }
+
+                #wifi-loader svg.circle-outer circle.back {
+                    animation: circle-outer135 1.8s ease infinite 0.3s;
+                }
+
+                #wifi-loader svg.circle-outer circle.front {
+                    animation: circle-outer135 1.8s ease infinite 0.15s;
+                }
+
+        #wifi-loader svg.circle-middle {
+            height: 60px;
+            width: 60px;
+        }
+
+            #wifi-loader svg.circle-middle circle {
+                stroke: var(--front-color-in);
+                stroke-dasharray: 42.5 127.5;
+            }
+
+                #wifi-loader svg.circle-middle circle.back {
+                    animation: circle-middle6123 1.8s ease infinite 0.25s;
+                }
+
+                #wifi-loader svg.circle-middle circle.front {
+                    animation: circle-middle6123 1.8s ease infinite 0.1s;
+                }
+
+        #wifi-loader svg.circle-inner {
+            height: 34px;
+            width: 34px;
+        }
+
+            #wifi-loader svg.circle-inner circle {
+                stroke-dasharray: 22 66;
+            }
+
+                #wifi-loader svg.circle-inner circle.back {
+                    animation: circle-inner162 1.8s ease infinite 0.2s;
+                }
+
+                #wifi-loader svg.circle-inner circle.front {
+                    animation: circle-inner162 1.8s ease infinite 0.05s;
+                }
+
+    #wifi-loader .text {
+        position: absolute;
+        bottom: -40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: lowercase;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+    }
+
+        #wifi-loader .text::before,
+        #wifi-loader .text::after {
+            content: attr(data-text);
+        }
+
+        #wifi-loader .text::before {
+            color: var(--text-color);
+        }
+
+        #wifi-loader .text::after {
+            color: var(--front-color-in);
+            animation: text-animation76 3.6s ease infinite;
+            position: absolute;
+            left: 0;
+        }
+
+@keyframes circle-outer135 {
+    0% {
+        stroke-dashoffset: 25;
+    }
+
+    25% {
+        stroke-dashoffset: 0;
+    }
+
+    65% {
+        stroke-dashoffset: 301;
+    }
+
+    80% {
+        stroke-dashoffset: 276;
+    }
+
+    100% {
+        stroke-dashoffset: 276;
+    }
+}
+
+@keyframes circle-middle6123 {
+    0% {
+        stroke-dashoffset: 17;
+    }
+
+    25% {
+        stroke-dashoffset: 0;
+    }
+
+    65% {
+        stroke-dashoffset: 204;
+    }
+
+    80% {
+        stroke-dashoffset: 187;
+    }
+
+    100% {
+        stroke-dashoffset: 187;
+    }
+}
+
+@keyframes circle-inner162 {
+    0% {
+        stroke-dashoffset: 9;
+    }
+
+    25% {
+        stroke-dashoffset: 0;
+    }
+
+    65% {
+        stroke-dashoffset: 106;
+    }
+
+    80% {
+        stroke-dashoffset: 97;
+    }
+
+    100% {
+        stroke-dashoffset: 97;
+    }
+}
+
+@keyframes text-animation76 {
+    0% {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    50% {
+        clip-path: inset(0);
+    }
+
+    100% {
+        clip-path: inset(0 0 0 100%);
+    }
+}
+
+ .amcharts-export-menu ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .amcharts-export-menu ul li {
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+    .amcharts-export-menu ul li:hover {
+        background: #f0f0f0;
+    }
+    .amcharts-export-menu ul li:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+    }
+
+.loader-container {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0 0 0 / 65%);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: -69px;
+}
+
+.report-link {
+    text-decoration: none; /* Removes the underline */
+    color: white; /* Bootstrap primary color for links */
+
+
+
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    font-size: 2.6vh;
+}
+
+    .report-link:hover {
+        color: white; /* Text color on hover */
+    }
+
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: 0;
+    margin-top: 0.125rem;
+    margin-left: -129px !important;
+    margin-top: -15px !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0rem rgba(0, 123, 255, 0.25) !important;
+}

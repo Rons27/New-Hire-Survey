@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VXI_NEW_HIRE_SURVEYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BroadcastManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="varbinary(max)" />
+          <Property Name="DateCreated" Type="varbinary(max)" />
+          <Property Name="DateUpdated" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="DateSystemUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateUpdatedSystem" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Lobs">
+          <Key>
+            <PropertyRef Name="LobId" />
+          </Key>
+          <Property Name="LobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+          <Property Name="DateUpdated" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="150" />
+          <Property Name="Site" Type="varchar" MaxLength="150" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="LogVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hrid" Type="varchar(max)" />
+          <Property Name="CountryCode" Type="varchar(max)" />
+          <Property Name="SiteCode" Type="varchar(max)" />
+          <Property Name="ProgramCode" Type="varchar(max)" />
+          <Property Name="FullName" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Respondents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hrid" Type="varchar(max)" />
+          <Property Name="FirstName" Type="varchar(max)" />
+          <Property Name="LastName" Type="varchar(max)" />
+          <Property Name="MiddleName" Type="varchar(max)" />
+          <Property Name="HireDate" Type="varchar(max)" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Team" Type="varchar(max)" />
+          <Property Name="Project" Type="varchar(max)" />
+          <Property Name="Region" Type="varchar(max)" />
+          <Property Name="Site" Type="varchar(max)" />
+          <Property Name="SupervisorID" Type="varchar(max)" />
+          <Property Name="PositionLevel" Type="varchar(max)" />
+          <Property Name="NtAccount" Type="varchar(max)" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SurveyAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseId" Type="varchar(max)" />
+          <Property Name="QuestionId" Type="varchar(max)" />
+          <Property Name="HRID" Type="varchar(max)" />
+          <Property Name="Answers" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SurveyAnswer_info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponseId" Type="varchar(max)" />
+          <Property Name="HRID" Type="varchar(max)" />
+          <Property Name="TL_HRID" Type="varchar(max)" />
+          <Property Name="Comment" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+          <Property Name="Trainor_Fullname" Type="varchar(max)" />
+          <Property Name="SupervisorId" Type="varchar(max)" />
+          <Property Name="Department" Type="varchar(max)" />
+          <Property Name="Team" Type="varchar(max)" />
+          <Property Name="Site" Type="varchar(max)" />
+          <Property Name="HireDate" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SurveyChoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeDescription" Type="varchar(max)" />
+          <Property Name="Choices" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SurveyQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="Body" Type="varchar(max)" />
+          <Property Name="Type" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HRID" Type="varchar(max)" />
+          <Property Name="NTAccount" Type="varchar(max)" />
+          <Property Name="Last_Name" Type="varchar(max)" />
+          <Property Name="First_Name" Type="varchar(max)" />
+          <Property Name="LOB" Type="varchar(max)" />
+          <Property Name="Position" Type="varchar(max)" />
+          <Property Name="Site" Type="varchar(max)" />
+          <Property Name="Position_Level" Type="varchar(max)" />
+          <Property Name="Roles" Type="varchar(max)" />
+          <Property Name="Createdby" Type="varchar(max)" />
+          <Property Name="UpdatedBy" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="varchar(max)" />
+          <Property Name="DateUpdated" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="HireDate" Type="varchar(max)" />
+          <Property Name="EmailAddress" Type="varchar(max)" />
+          <Property Name="isSentEmail" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="VXI_NEW_HIRE_SURVEYModelStoreContainer">
+          <EntitySet Name="BroadcastManage" EntityType="Self.BroadcastManage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DateSystemUpdate" EntityType="Self.DateSystemUpdate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lobs" EntityType="Self.Lobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogVisit" EntityType="Self.LogVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Respondents" EntityType="Self.Respondents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyAnswer" EntityType="Self.SurveyAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyAnswer_info" EntityType="Self.SurveyAnswer_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyChoices" EntityType="Self.SurveyChoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyQuestion" EntityType="Self.SurveyQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserManage" EntityType="Self.UserManage" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VXI_NEW_HIRE_SURVEYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VXI_NEW_HIRE_SURVEYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SurveyQuestion" EntityType="VXI_NEW_HIRE_SURVEYModel.SurveyQuestion" />
+          <EntitySet Name="SurveyChoices" EntityType="VXI_NEW_HIRE_SURVEYModel.SurveyChoices" />
+          <EntitySet Name="SurveyAnswer" EntityType="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer" />
+          <EntitySet Name="SurveyAnswer_info" EntityType="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer_info" />
+          <EntitySet Name="UserManage" EntityType="VXI_NEW_HIRE_SURVEYModel.UserManage" />
+          <EntitySet Name="BroadcastManage" EntityType="VXI_NEW_HIRE_SURVEYModel.BroadcastManage" />
+          <EntitySet Name="Locations" EntityType="VXI_NEW_HIRE_SURVEYModel.Locations" />
+          <EntitySet Name="Lobs" EntityType="VXI_NEW_HIRE_SURVEYModel.Lobs" />
+          <EntitySet Name="Respondents" EntityType="VXI_NEW_HIRE_SURVEYModel.Respondents" />
+          <EntitySet Name="DateSystemUpdate" EntityType="VXI_NEW_HIRE_SURVEYModel.DateSystemUpdate" />
+          <EntitySet Name="LogVisit" EntityType="VXI_NEW_HIRE_SURVEYModel.LogVisit" />
+        </EntityContainer>
+        <EntityType Name="SurveyQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SurveyChoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Choices" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SurveyAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HRID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Answers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SurveyAnswer_info">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponseId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HRID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TL_HRID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Trainor_Fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SupervisorId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Team" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Site" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HireDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HRID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Site" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Position_Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Roles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="NTAccount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HireDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isSentEmail" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BroadcastManage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateCreated" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateUpdated" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Site" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Lobs">
+          <Key>
+            <PropertyRef Name="LobId" />
+          </Key>
+          <Property Name="LobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateUpdated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Respondents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hrid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HireDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Team" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Project" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Site" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SupervisorID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PositionLevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NtAccount" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DateSystemUpdate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateUpdatedSystem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LogVisit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hrid" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SiteCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VXI_NEW_HIRE_SURVEYModelStoreContainer" CdmEntityContainer="VXI_NEW_HIRE_SURVEYEntities">
+          <EntitySetMapping Name="SurveyQuestion">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyQuestion">
+              <MappingFragment StoreEntitySet="SurveyQuestion">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyChoices">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyChoices">
+              <MappingFragment StoreEntitySet="SurveyChoices">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Choices" ColumnName="Choices" />
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyAnswer">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer">
+              <MappingFragment StoreEntitySet="SurveyAnswer">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="HRID" ColumnName="HRID" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyAnswer_info">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer_info">
+              <MappingFragment StoreEntitySet="SurveyAnswer_info">
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+                <ScalarProperty Name="Trainor_Fullname" ColumnName="Trainor_Fullname" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="TL_HRID" ColumnName="TL_HRID" />
+                <ScalarProperty Name="HRID" ColumnName="HRID" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserManage">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.UserManage">
+              <MappingFragment StoreEntitySet="UserManage">
+                <ScalarProperty Name="isSentEmail" ColumnName="isSentEmail" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="NTAccount" ColumnName="NTAccount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+                <ScalarProperty Name="Position_Level" ColumnName="Position_Level" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="LOB" ColumnName="LOB" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="HRID" ColumnName="HRID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BroadcastManage">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.BroadcastManage">
+              <MappingFragment StoreEntitySet="BroadcastManage">
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Locations">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lobs">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Lobs">
+              <MappingFragment StoreEntitySet="Lobs">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="LobId" ColumnName="LobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respondents">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Respondents">
+              <MappingFragment StoreEntitySet="Respondents">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="NtAccount" ColumnName="NtAccount" />
+                <ScalarProperty Name="PositionLevel" ColumnName="PositionLevel" />
+                <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Hrid" ColumnName="Hrid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DateSystemUpdate">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.DateSystemUpdate">
+              <MappingFragment StoreEntitySet="DateSystemUpdate">
+                <ScalarProperty Name="DateUpdatedSystem" ColumnName="DateUpdatedSystem" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogVisit">
+            <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.LogVisit">
+              <MappingFragment StoreEntitySet="LogVisit">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+                <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Hrid" ColumnName="Hrid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

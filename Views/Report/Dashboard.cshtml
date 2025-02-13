@@ -1,0 +1,542 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .comment-table-body {
+        max-height: 262px;
+        overflow-y: auto;
+    }
+
+    .comment-container {
+        width: 100%;
+        max-height: 268px; /* Adjust the height as needed */
+        overflow-x: scroll;
+    }
+
+    .comment-item {
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        background-color: #e2efda;
+        font-weight: 700;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+        .comment-item p {
+            margin: 0;
+        }
+
+    .amcharts-export-menu ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+        .amcharts-export-menu ul li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+            .amcharts-export-menu ul li:hover {
+                background: #f0f0f0;
+            }
+
+            .amcharts-export-menu ul li:not(:last-child) {
+                border-bottom: 1px solid #ccc;
+            }
+
+    .amcharts-amexport-menu-level-0.amcharts-amexport-top {
+        top: 5px;
+        bottom: auto;
+        margin-top: -48px !important;
+    }
+
+    .amcharts-amexport-item.amcharts-amexport-item-level-0 {
+        opacity: 15 !important; /* Correct opacity value */
+        width: 36px !important;
+        min-height: 30px !important;
+        transition: all 100ms ease-in-out !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        list-style: none !important; /* Removes list styling */
+        padding: 0 !important; /* Removes default padding */
+        margin: 0 !important; /* Removes default margin */
+        cursor: pointer !important; /* Changes cursor to pointer (hand icon) on hover */
+    }
+
+    .amcharts-amexport-label {
+        display: block;
+        cursor: default;
+        padding: 0.5em 1em;
+        text-decoration: none !important;
+        color: inherit !important;
+        cursor: pointer !important; /* Changes cursor to pointer (hand icon) on hover */
+    }
+
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+        list-style: none;
+    }
+
+    li.select2-selection__choice {
+        font-size: 13px !important;
+        font-weight: 700;
+        background-color: #e55417 !important;
+        border: 1px solid #006fe6 !important;
+        border-radius: 4px;
+        cursor: default;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+        padding: 0 5px;
+        color: #ffffff !important;
+    }
+
+    /*    .div-scroll {
+        height: 12vh;
+        overflow: auto;
+    }*/
+
+    /* Basic styles for the select element and display area */
+
+</style>
+
+
+
+<div class="container-fluid motherDiv p3" ng-controller="Reportctrl" ng-init="Getsite();GetTeam(); GetPercentageDashboard();GetHireDate();GetDATEOFRESPONSE;GetLob(); Getwave()">
+    <div class="vxi-div">
+
+        <div class="row">
+            <div class="col-xs-4 col-md-6 col-lg-12 p-1 scrollable-container">
+                <div class="container-fluid tab-content" id="tab1">
+
+                    <div class="col-md-3 m-4">
+                        <div class="form-group">
+                            <div class="form-line ">
+                                <h3 style="color:orange;"><strong>DASHBOARD</strong></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="body">
+                                    <div class="row clearfix">
+
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>  Date Hire From </strong></label>
+
+                                                    <input type="date" ng-disabled="(ReportFilter.FromDate || ReportFilter.ToDate) || (ReportFilter.DATEOFRESPONSETO)||ReportFilter.DATEOFRESPONSEFROM" id="date_tab1" class="form-control" ng-model="ReportFilter.HireDateFrom" />
+
+                                                </div>
+                                                <div class="form-line">
+                                                    <label><strong>Site</strong> <span style="color: red;">*</span></label>
+                                                    <div style="max-height: 15vh; overflow: auto; ">
+                                                        <select class="form-select left-drop" id="multiple-select-field" data-placeholder="Choose Site" multiple ng-model="ReportFilter.Site"  ng-change="teamlist()">
+                                                            <option ng-repeat="item in Sites" ng-value="item.Location" ng-bind="item.Site "></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong> Date Hire To</strong></label>
+
+                                                    <input type="date" ng-disabled="(ReportFilter.FromDate || ReportFilter.ToDate) || (ReportFilter.DATEOFRESPONSETO)||ReportFilter.DATEOFRESPONSEFROM" id="date_tab1" class="form-control" ng-model="ReportFilter.HireDateTo" />
+                                                </div>
+                                                <div class="form-line">
+                                                    <label><strong>Program</strong> <span style="color: red;">*</span></label>
+                                                    <div style="max-height: 15vh; overflow: auto;">
+                                                        <select class="form-select" id="multiple-select-field2" data-placeholder="Choose Program" multiple ng-model="ReportFilter.Lobs"  ng-change="Wavedisable()">
+                                                            <option ng-repeat="item in Lobslist | orderBy:'Department'" ng-value="item.Department" ng-bind="item.Department"></option>
+
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>Response From </strong></label>
+                                                    <input type="date" ng-disabled="(ReportFilter.HireDateFrom || ReportFilter.HireDateTo) || (ReportFilter.FromDate || ReportFilter.ToDate)" id="date_tab1" class="form-control" ng-model="ReportFilter.DATEOFRESPONSEFROM" />
+
+                                                </div>
+                                                <div class="form-line">
+                                                    <label><strong> Wave </strong></label>
+                                                    <div style="max-height: 15vh; overflow: auto; ">
+                                                        <select ng-disabled="Wavelist == ''" class="form-select" id="wavedrop" data-placeholder="Choose Wave" multiple ng-model="ReportFilter.Wave">
+                                                            <option ng-repeat="item in Wavelist | orderBy:'item'" ng-value="item" ng-bind="item"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label><strong>Response To</strong></label>
+                                                    <input type="date" ng-disabled="(ReportFilter.HireDateFrom || ReportFilter.HireDateTo) || (ReportFilter.FromDate || ReportFilter.ToDate)" id="date_tab1" class="form-control" ng-model="ReportFilter.DATEOFRESPONSETO" />
+
+                                                </div>
+
+
+                                                <div class="align-items-end justify-content-around h-100 m-4">
+
+
+                                                    <button type="button" class="btn btn-success waves-effect"
+                                                            ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                            ng-click="GetPercentageDashboard();">
+                                                        GENERATE
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="Clear();GetPercentageDashboard();">CLEAR</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        @*<div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <label><strong>Site</strong> <span style="color: red;">*</span></label>
+                                                        <div style="max-height: 15vh; overflow: auto; ">
+                                                            <select class="form-select left-drop" id="multiple-select-field" data-placeholder="Choose Site" multiple ng-model="ReportFilter.Site">
+                                                                <option ng-repeat="item in Sites" ng-value="item.Location" ng-bind="item.Site "></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>*@
+
+                                        @*<div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <label><strong>Program</strong> <span style="color: red;">*</span></label>
+                                                        <div style="max-height: 15vh; overflow: auto;">
+                                                            <select class="form-select" id="multiple-select-field2" data-placeholder="Choose Program" multiple ng-model="ReportFilter.Lobs">
+                                                                <option ng-repeat="item in Lobslist" ng-value="item.Department" ng-bind="item.Department"></option>
+
+
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>*@
+
+
+                                        @*<div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <label><strong> Wave </strong></label>
+                                                        <div style="max-height: 15vh; overflow: auto; ">
+                                                            <select class="form-select" id="wavedrop" data-placeholder="Choose Wave" multiple ng-model="ReportFilter.Wave">
+                                                                <option ng-repeat="item in WaveDropdown" ng-value="item" ng-bind="item"></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <!--<div class="col-md-2">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <label><strong> Program </strong></label>
+
+                                                <select class="form-control" ng-model="ReportFilter.Lobs">
+                                                    <option value="" selected>Select Program...</option>-->
+                                        @*<option value="ALL" style="height: 200px; overflow-y: scroll;">ALL</option>*@
+                                        <!--<option ng-repeat="item in Lobslist" ng-value="item.Department" ng-bind="item.Department"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                        @*<div class="col-md-11 text-lg-end">
+                                                <div class="form-group" style="margin-top: calc(2% - 11px) ">
+                                                    <div class="form-line">
+                                                        <button type="button" class="btn btn-success waves-effect"
+                                                                ng-disabled="((ReportFilter.FromDate && !ReportFilter.ToDate) || (!ReportFilter.FromDate && ReportFilter.ToDate))"
+                                                                ng-click="GetPercentageDashboard();">
+                                                            GENERATE
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="form-group" style="margin-top: calc(28% - 13px) ">
+                                                    <div class="form-line">
+                                                        <button type="button" class="btn btn-primary waves-effect" ng-click="Clear();GetPercentageDashboard();">CLEAR</button>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-xs-4 col-md-6 col-lg-12 p-1 scrollable-container ">
+            <div class="container-fluid tab-content" id="tab1">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row clearfix">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="body">
+                                <div class="row clearfix">
+
+                                    @*<div class="tab2_table">*@
+                                    @*<table id="dataTable" class="table table-striped table-hover" style="width:100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"></table>*@
+                                    @*</div>*@
+                                    @*<div id="chartdiv"></div>*@
+
+                                    <div class="col-md-12">
+                                        <div class=" align-items-end justify-content-end h-100 m-3">
+
+                                            <button type="button" class="btn btn-success waves-effect" ng-click="downloadExcelWithCharts()">Export Dashboard to Excel</button>
+                                            <button ng-click="downloadPdf()" class="btn btn-success waves-effect" style="margin: 10px;">Download Dashboard as PDF</button>
+
+                                        </div>
+                                    </div>
+                                    <table id="test" class="table table-bordered" style="width: 100%;">
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Work Conditions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Work & Responsibility</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv2" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Training</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv3" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Supervision</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv4" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Pay & Benefits</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv5" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Company Policies & Administration</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv6" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>Career Advancement</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div id="chartdiv7" style="width: 100%; height: 262px;"></div>
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+
+                                        <thead style="background-color: #404E51; color: white; font-weight: bold;">
+                                            <tr style="text-align: center;">
+                                                <th>COMMENTS/SUGGESTIONS/CONCERNS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="comment-table-body">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <div class="comment-container">
+                                                        <div ng-repeat="comment in Comments" class="comment-item">
+                                                            <p><i> {{ comment.Comment }}</i></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<script src="~/Content/library/jspdf.umd.min.js"></script>
+<script src="~/Content/library/html2canvas.min.js"></script>
+<script src="~/Content/library/xlsx.full.min.js"></script>
+<script src="~/Content/library/exceljs.min.js"></script>
+
+
+
+
+<script src="~/Content/library/core.js"></script>
+<script src="~/Content/library/charts.js"></script>
+@*<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/export/export.js"></script>*@
+
+
+
+
+@*<script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>*@
+
+
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/shim.min.js"></script>
+@*<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>*@
+@*<script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.0/dist/exceljs.min.js"></script>*@
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>*@
+
+<!-- Button to trigger the export -->
+@*<button onclick="exportChartsToExcel()">Export Dashboard to Excel</button>*@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.querySelector('.form-select.left-drop');
+        const spanElement = document.querySelector('span.select2.select2-container');
+
+        if (container && spanElement) {
+            const parentDiv = container.closest('div[style*="max-height"]');
+            const maxHeight = parseInt(parentDiv.style.maxHeight, 10);
+
+            if (maxHeight > 15) {
+                spanElement.style.height = '10vh';
+                spanElement.style.overflow = 'auto';
+            }
+        }
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.1/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<!-- Include the exportTableToExcel function -->
+<script>
+
+
+
+
+
+</script>

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VXI_NEW_HIRE_SURVEYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BroadcastManage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="varbinary(max)" />
+    <Property Name="DateCreated" Type="varbinary(max)" />
+    <Property Name="DateUpdated" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="DateSystemUpdate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateUpdatedSystem" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Lobs">
+    <Key>
+      <PropertyRef Name="LobId" />
+    </Key>
+    <Property Name="LobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationId" Type="int" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+    <Property Name="UpdatedBy" Type="varchar(max)" />
+    <Property Name="DateUpdated" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Region" Type="varchar" MaxLength="50" />
+    <Property Name="Location" Type="varchar" MaxLength="150" />
+    <Property Name="Site" Type="varchar" MaxLength="150" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="LogVisit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hrid" Type="varchar(max)" />
+    <Property Name="CountryCode" Type="varchar(max)" />
+    <Property Name="SiteCode" Type="varchar(max)" />
+    <Property Name="ProgramCode" Type="varchar(max)" />
+    <Property Name="FullName" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Respondents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hrid" Type="varchar(max)" />
+    <Property Name="FirstName" Type="varchar(max)" />
+    <Property Name="LastName" Type="varchar(max)" />
+    <Property Name="MiddleName" Type="varchar(max)" />
+    <Property Name="HireDate" Type="varchar(max)" />
+    <Property Name="Department" Type="varchar(max)" />
+    <Property Name="Email" Type="varchar(max)" />
+    <Property Name="Team" Type="varchar(max)" />
+    <Property Name="Project" Type="varchar(max)" />
+    <Property Name="Region" Type="varchar(max)" />
+    <Property Name="Site" Type="varchar(max)" />
+    <Property Name="SupervisorID" Type="varchar(max)" />
+    <Property Name="PositionLevel" Type="varchar(max)" />
+    <Property Name="NtAccount" Type="varchar(max)" />
+    <Property Name="Status" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResponseId" Type="varchar(max)" />
+    <Property Name="QuestionId" Type="varchar(max)" />
+    <Property Name="HRID" Type="varchar(max)" />
+    <Property Name="Answers" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SurveyAnswer_info">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ResponseId" Type="varchar(max)" />
+    <Property Name="HRID" Type="varchar(max)" />
+    <Property Name="TL_HRID" Type="varchar(max)" />
+    <Property Name="Comment" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+    <Property Name="Trainor_Fullname" Type="varchar(max)" />
+    <Property Name="SupervisorId" Type="varchar(max)" />
+    <Property Name="Department" Type="varchar(max)" />
+    <Property Name="Team" Type="varchar(max)" />
+    <Property Name="Site" Type="varchar(max)" />
+    <Property Name="HireDate" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SurveyChoices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeDescription" Type="varchar(max)" />
+    <Property Name="Choices" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="SurveyQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="varchar(max)" />
+    <Property Name="Title" Type="varchar(max)" />
+    <Property Name="Body" Type="varchar(max)" />
+    <Property Name="Type" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserManage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HRID" Type="varchar(max)" />
+    <Property Name="NTAccount" Type="varchar(max)" />
+    <Property Name="Last_Name" Type="varchar(max)" />
+    <Property Name="First_Name" Type="varchar(max)" />
+    <Property Name="LOB" Type="varchar(max)" />
+    <Property Name="Position" Type="varchar(max)" />
+    <Property Name="Site" Type="varchar(max)" />
+    <Property Name="Position_Level" Type="varchar(max)" />
+    <Property Name="Roles" Type="varchar(max)" />
+    <Property Name="Createdby" Type="varchar(max)" />
+    <Property Name="UpdatedBy" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="varchar(max)" />
+    <Property Name="DateUpdated" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="HireDate" Type="varchar(max)" />
+    <Property Name="EmailAddress" Type="varchar(max)" />
+    <Property Name="isSentEmail" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="VXI_NEW_HIRE_SURVEYModelStoreContainer">
+    <EntitySet Name="BroadcastManage" EntityType="Self.BroadcastManage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DateSystemUpdate" EntityType="Self.DateSystemUpdate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lobs" EntityType="Self.Lobs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogVisit" EntityType="Self.LogVisit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Respondents" EntityType="Self.Respondents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurveyAnswer" EntityType="Self.SurveyAnswer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurveyAnswer_info" EntityType="Self.SurveyAnswer_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurveyChoices" EntityType="Self.SurveyChoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurveyQuestion" EntityType="Self.SurveyQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserManage" EntityType="Self.UserManage" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

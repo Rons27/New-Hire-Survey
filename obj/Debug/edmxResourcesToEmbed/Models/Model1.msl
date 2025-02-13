@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VXI_NEW_HIRE_SURVEYModelStoreContainer" CdmEntityContainer="VXI_NEW_HIRE_SURVEYEntities">
+    <EntitySetMapping Name="SurveyQuestion">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyQuestion">
+        <MappingFragment StoreEntitySet="SurveyQuestion">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyChoices">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyChoices">
+        <MappingFragment StoreEntitySet="SurveyChoices">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Choices" ColumnName="Choices" />
+          <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyAnswer">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer">
+        <MappingFragment StoreEntitySet="SurveyAnswer">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Answers" ColumnName="Answers" />
+          <ScalarProperty Name="HRID" ColumnName="HRID" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveyAnswer_info">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.SurveyAnswer_info">
+        <MappingFragment StoreEntitySet="SurveyAnswer_info">
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="Trainor_Fullname" ColumnName="Trainor_Fullname" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="TL_HRID" ColumnName="TL_HRID" />
+          <ScalarProperty Name="HRID" ColumnName="HRID" />
+          <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserManage">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.UserManage">
+        <MappingFragment StoreEntitySet="UserManage">
+          <ScalarProperty Name="isSentEmail" ColumnName="isSentEmail" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+          <ScalarProperty Name="NTAccount" ColumnName="NTAccount" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="Position_Level" ColumnName="Position_Level" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="LOB" ColumnName="LOB" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="HRID" ColumnName="HRID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BroadcastManage">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.BroadcastManage">
+        <MappingFragment StoreEntitySet="BroadcastManage">
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Locations">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lobs">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Lobs">
+        <MappingFragment StoreEntitySet="Lobs">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="LobId" ColumnName="LobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Respondents">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.Respondents">
+        <MappingFragment StoreEntitySet="Respondents">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="NtAccount" ColumnName="NtAccount" />
+          <ScalarProperty Name="PositionLevel" ColumnName="PositionLevel" />
+          <ScalarProperty Name="SupervisorID" ColumnName="SupervisorID" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Hrid" ColumnName="Hrid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DateSystemUpdate">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.DateSystemUpdate">
+        <MappingFragment StoreEntitySet="DateSystemUpdate">
+          <ScalarProperty Name="DateUpdatedSystem" ColumnName="DateUpdatedSystem" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogVisit">
+      <EntityTypeMapping TypeName="VXI_NEW_HIRE_SURVEYModel.LogVisit">
+        <MappingFragment StoreEntitySet="LogVisit">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ProgramCode" ColumnName="ProgramCode" />
+          <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Hrid" ColumnName="Hrid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

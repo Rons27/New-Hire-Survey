@@ -1,0 +1,82 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NEW HIRE SURVEY</title>
+
+    @*@Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="icon" type="image/x-icon" href="~/Content/Image/VXI.ico" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/CSS/LoginCSS.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var url = "@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))";
+    </script>
+    <style>
+
+        .loader-container {
+            position: fixed;
+            inset: 0;
+            background-color: rgb(0 0 0 / 65%);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin-top: -12vh;
+        }
+    </style>
+</head>
+<body ng-app="App" style="padding-top: 0px;">
+    <div>
+        @RenderBody()
+    </div>
+    <div class="loader-container" id="Loader">
+
+        <div id="wifi-loader">
+            <svg viewBox="0 0 86 86" class="circle-outer">
+                <circle r="40" cy="43" cx="43" class="back"></circle>
+                <circle r="40" cy="43" cx="43" class="front"></circle>
+                <circle r="40" cy="43" cx="43" class="new"></circle>
+            </svg>
+            <svg viewBox="0 0 60 60" class="circle-middle">
+                <circle r="27" cy="30" cx="30" class="back"></circle>
+                <circle r="27" cy="30" cx="30" class="front"></circle>
+            </svg>
+
+            <div data-text="Loading..." class="text"></div>
+        </div>
+
+    </div>
+
+    @RenderSection("scripts", required: false)
+    <script src="~/Angularjs/angular.min.js"></script>
+    <script src="~/Angularjs/mainApp.js"></script>
+
+    <script src="~/Angularjs/Controllers/ReportController.js"></script>
+    <script src="~/Angularjs/angular-file-saver.bundle.js"></script>
+
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+    <script src="~/Angularjs/Controllers/LoginController.js"></script>
+    <script src="~/Angularjs/Controllers/LoaderService.js"></script>
+    <script src="~/Content/sweetalert2.js"></script>
+
+    <script src="~/scripts/fusionchart/js/angular-fusioncharts.min.js"></script>
+    <script src="~/scripts/fusionchart/js/fusioncharts.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.carbon.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.fint.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.zune.js"></script>
+
+    @*<script src="~/Scripts/sweetalert2.js"></script>*@
+
+</body>

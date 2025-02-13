@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> NEW HIRE SURVEY</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/Image/VXI.ico" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="~/Content/selected/select2.min.css" rel="stylesheet" />
+    <link href="~/Content/selected/select2-bootstrap-5-theme.rtl.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        var url = "@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))";
+    </script>
+</head>
+<body ng-app="App">
+    @*START HEADER*@
+    <section class="vxi-header">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background-color: rgb(229, 84, 23); color: black; display: flex; justify-content: space-between; align-items: center; height: 58px; box-shadow: 0 5px 35px rgba(0, 0, 0, 0.1); position: fixed; width: 100%; z-index: 1000; border-bottom: 2px solid #00000066;">
+            <div class="nav-item" style="flex: 1; display: flex; justify-content: center;">
+                <div class="headerPos" style="display: flex; justify-content: center; align-items: center;">
+                    <a class="navbar-brand" href="@Url.Action("index", "Home")" style="display: flex; justify-content: center; align-items: center; margin-right: calc(-61% - 95px);">
+                        @*<img src="~/Content/images/VXI_LOGO.png" class="logoSize" />*@
+                        <h2 class="shine" style="margin: 0;">
+                            NEW HIRE SURVEY
+                        </h2>
+                    </a>
+                </div>
+            </div>
+
+            @if (Session["Access"].ToString() == "ADMIN")
+            {
+                <div class="faq_button" style="display: flex; gap: 14px;  padding-right: 35px; align-items: center;">
+                    <div class="dropdown">
+                        <button class="btn" type="button" style="font-size: 3vh; color: white; " id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "UserManage")">User Manage</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Broadcast")">Survey Respondent</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Dashboard", "Report")">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Report")">Report</a></li>
+                            <li><a class="dropdown-item btn-danger" href="@Url.Action("Logouts", "Login")">Logout</a></li>
+
+                        </ul>
+                    </div>
+
+                    <a href="~/Content/UserGuide/FAQ.pdf" target="_blank" title="FAQ">
+                        <i class="fa fa-question-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+                    <a href="~/Content/UserGuide/ADMIN_GUIDE.pdf" target="_blank" title="User Guide">
+                        <i class="fa fa-info-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+                </div>
+            }
+
+            @if (Session["Access"].ToString() == "REPORT")
+            {
+
+                <div class="faq_button" style="display: flex; gap: 14px;  padding-right: 35px; align-items: center;">
+                    <div class="dropdown">
+                        <button class="btn" type="button" style="font-size: 3vh; color: white; " id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="@Url.Action("Dashboard", "Report")">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index", "Report")">Report</a></li>
+                            <li><a class="dropdown-item btn-danger" href="@Url.Action("Logouts", "Login")">Logout</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="~/Content/UserGuide/FAQ.pdf" target="_blank" title="FAQ">
+                        <i class="fa fa-question-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+                    <a href="~/Content/UserGuide/REPORT_GUIDE.pdf" target="_blank" title="User Guide">
+                        <i class="fa fa-info-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+
+
+                </div>
+
+                @*<div class="faq_button" style="display: flex; gap: 14px; padding-right: 35px; align-items: center;">
+                        <div class="dropdown nav-item">
+                            <a href="@Url.Action("Index", "Report")" target="_blank" title="" class="report-link">
+                                Report
+                            </a>
+                        </div>
+                        <a href="~/Content/FAQ - EXIT Latest.pdf" target="_blank" title="FAQ">
+                            <i class="fa fa-question-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                        </a>
+                        <a href="~/Content/FAQsAndGuide/VXI EXIT USER GUIDE 0330.pdf" target="_blank" title="User Guide">
+                            <i class="fa fa-info-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                        </a>
+                    </div>*@
+            }
+            @if (Session["Access"].ToString() == "USER")
+            {
+                <div class="dropdown">
+                    <button class="btn" type="button" style="font-size: 3vh; color: white; " id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <li><a class="dropdown-item btn-danger" href="@Url.Action("Logouts", "Login")">Logout</a></li>
+
+                    </ul>
+                </div>
+                <div class="faq_button" style="display: flex; gap: 14px; padding-right: 35px; align-items: center;">
+
+                    <a href="~/Content/UserGuide/FAQ.pdf" target="_blank" title="FAQ">
+                        <i class="fa fa-question-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+                    <a href="~/Content/UserGuide/USER_GUIDE.pdf" target="_blank" title="User Guide">
+                        <i class="fa fa-info-circle" style="color: white; margin-top: 4px; font-size: 3vh;"></i>
+                    </a>
+
+
+                </div>
+
+
+            }
+
+        </nav>
+    </section>
+
+    <!-- Add your other HTML content here -->
+    <div class="content">
+        @RenderBody()
+
+        <!-- Your page content goes here -->
+    </div>
+    <!--<div class="loader-container" id="Loader">
+        <div class="text-center">
+            <div style="background-color: black; display: inline-block; border-radius: 5px;">
+                <img src="~/Content/Image/Spinner-1s-200px (1).gif" height="55" width="55" />-->
+    @*<img src="~/Content/Image/giphy.gif" height="190" width="200" />*@
+    <!--</div>
+        </div>
+    </div>-->
+
+    <div class="loader-container" id="Loader">
+        <div class="text-center">
+            <div style=" display: inline-block; border-radius: 5px;">
+                @*<img src="~/Content/Image/Loader.gif" height="55" width="55" />*@
+                <div id="wifi-loader">
+                    <svg viewBox="0 0 86 86" class="circle-outer">
+                        <circle r="40" cy="43" cx="43" class="back"></circle>
+                        <circle r="40" cy="43" cx="43" class="front"></circle>
+                        <circle r="40" cy="43" cx="43" class="new"></circle>
+                    </svg>
+                    <svg viewBox="0 0 60 60" class="circle-middle">
+                        <circle r="27" cy="30" cx="30" class="back"></circle>
+                        <circle r="27" cy="30" cx="30" class="front"></circle>
+                    </svg>
+
+                    <div data-text="Loading..." class="text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Content/selected/jquery.slim.min.js"></script>
+    <script src="~/Content/selected/select2.min.js"></script>
+    <script>
+        $('#multiple-select-field').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+        });
+
+
+        $('#multiple-select-field2').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+        });
+
+
+        $('#sitesdrop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+        });
+
+        $('#Program').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+        });
+
+        $('#wavedrop').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+            closeOnSelect: true,
+        });
+    </script>
+
+    <script src="~/Angularjs/angular.min.js"></script>
+    <script src="~/Angularjs/mainApp.js"></script>
+
+
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Angularjs/Controllers/Survey.js"></script>
+    <script src="~/Angularjs/Controllers/LoaderService.js"></script>
+    <script src="~/Angularjs/Controllers/UserManage.js"></script>
+
+    <script src="~/Angularjs/Controllers/ReportController.js"></script>
+    <script src="~/Angularjs/angular-file-saver.bundle.js"></script>
+
+    <script src="~/Content/DataTable/jquery-3.7.0.js"></script>
+    <link href="~/Content/DataTable/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Content/DataTable/jquery.dataTables.min.js"></script>
+
+    <script src="~/Content/DataTable/dataTables.buttons.min.js"></script>
+    <link href="~/Content/DataTable/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Content/DataTable/buttons.html5.min.js"></script>
+    <script src="~/Content/DataTable/buttons.print.min.js"></script>
+
+    <script src="~/scripts/fusionchart/js/angular-fusioncharts.min.js"></script>
+    <script src="~/scripts/fusionchart/js/fusioncharts.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.carbon.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.fint.js"></script>
+    <script src="~/scripts/fusionchart/theme/fusioncharts.theme.zune.js"></script>
+
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>*@
+    <!-- Load amCharts libraries -->
+    <script src="~/Content/charts/core.js"></script>
+    <script src="~/Content/charts/charts.js"></script>
+    <script src="~/Content/charts/animated.js"></script>
+
+    <script src="~/Content/charts/export.min.js"></script>
+    <script src="~/Content/charts/export.js"></script>
+    <link href="~/Content/charts/export.css" rel="stylesheet" />
+
+    <script src="~/Scripts/core.js"></script>
+    <script src="~/Scripts/charts.js"></script>
+    <script src="~/Scripts/animated.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <script src="~/Content/sweetalert2.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+
+    <section class="vxi-footer">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="footer-container bg-dark" style="z-index: 99;">
+                    <center>
+                        <img src="~/Content/images/footerWhite.png" class="footerLogoSize" />
+                    </center>
+
+                    @*FOOTER VERSION*@
+                    <p class="footerVersion">
+                        <strong> Version:</strong> 1.4 | <strong> Date:</strong> 12/05/2024
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+</body>
+</html>

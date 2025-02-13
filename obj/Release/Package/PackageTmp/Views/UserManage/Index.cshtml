@@ -1,0 +1,286 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Optional styling for a more visually appealing table */
+/*    .table-bordered-primary > thead > tr > th {
+        background-color: #0d6efd;
+        color: #fff;
+    }*/
+
+    .leftbody {
+        /*border: 1px solid red;*/
+        width: 50%;
+        float: left;
+        padding: 5px;
+    }
+
+    .rightbody {
+        /*border: 1px solid yellow;*/
+        width: 50%;
+        float: left;
+        padding: 5px;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center; /* Realign vertically for consistency */
+        margin-bottom: 1rem;
+    }
+
+    .search-input {
+        flex-grow: 1;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        margin-left: 1rem; /* Add margin for spacing */
+    }
+
+/*    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+*/
+/*    .pagination {
+        display: flex;
+        justify-content: right;
+        margin-top: 20px;
+    }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+    .active {
+        font-weight: bold;
+    }*/
+</style>
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+<section ng-controller="ManageController">
+    <div class="container-fluid motherDiv">
+        <div class="vxi-div" ng-init="Users();">
+            <div class="row">
+                <div class="col-xs-4 col-md-6 col-lg-12 p-2 scrollable-container">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <h3 style="color:orange;"><strong>User Manage</strong></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="search-container ">
+                        <button type="button" ng-click="clear();addAdmin();" class="btn btn-success ">Add User</button>
+                    </div>
+
+                    <div class="row clearfix">
+
+                        <table id="dataTable" class="table table-striped table-hover" style="width:100%; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New User Modal -->
+    <div class="modal fade addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="addAdminModalLabel">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="loader-modal-container d-none">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="text-secondary">Please wait . . .</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-content-modal">
+                        <form id="add-admin-search-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="domain" class="form-label">DOMAIN:</label>
+                                        <select class="form-select" id="domain" ng-model="Domain" ng-init="Domain='VXIPHP'">
+                                            <option value="VXIPHP">VXIPHP</option>
+                                            <!-- Other options can be added as needed -->
+                                            <!--<option value="VXIINDIA">VXIINDIA</option>
+                                            <option value="MCM">MCM</option>-->
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="hrid" class="form-label">HRID:</label>
+                                        <input type="text" ng-model="searcNewhHrid_input" class="form-control" id="hrid" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="first-name" class="form-label">First Name:</label>
+                                        <input type="text" ng-model="save.FirstName" class="form-control" id="first-name" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="last-name" class="form-label">Last Name:</label>
+                                        <input type="text" ng-model="save.LastName" class="form-control" id="last-name" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="middle-name" class="form-label">LOB:</label>
+                                        <input type="text" ng-model="save.LOB" class="form-control" id="middle-name" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="search-hrid" class="form-label">Enter HRID:</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" style="width:40%;" id="search-hrid" ng-model="searcNewhHrid_input" placeholder="HRID" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                            <button type="button" ng-disabled="!searcNewhHrid_input || !Domain" class="btn btn-primary" ng-click="searchUser()">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="team" class="form-label">Site:</label>
+                                        <input type="text" ng-model="save.Site" class="form-control" id="team" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email-address" class="form-label">Position:</label>
+                                        <input type="text" ng-model="save.Position" class="form-control" id="email-address" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lob" class="form-label">Position Level:</label>
+                                        <input type="text" ng-model="save.PositionLevel" class="form-control" id="lob" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="roles" class="form-label">Role:</label>
+                                        <select class="form-select" id="roles" ng-model="save.Roles">
+                                            <option value="">SELECT ROLE</option>
+                                            <option value="ADMIN">ADMIN</option>
+                                            <option value="REPORT">REPORT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnClose" data-bs-dismiss="modal" ng-click="clear()">Close</button>
+                    <button type="button" class="btn btn-success" ng-disabled="saveIsdisable === true || !Domain || !save.Roles || !save.FirstName" ng-click="saveUser()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update User Modal -->
+    <div class="modal fade addAdminModal2" tabindex="-1" aria-labelledby="addAdminModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="addAdminModal2Label">Update Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="loader-modal-container d-none">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="text-secondary">Please wait . . .</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-content-modal">
+                        <form id="update-admin-form">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="mb-3">
+                                        <label for="update-hrid" class="form-label">First Name:</label>
+                                        <input type="text" ng-model="details.First_Name" class="form-control" id="update-hrid" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="update-first-name" class="form-label">HRID:</label>
+                                        <input type="text" ng-model="details.HRID" class="form-control" id="update-first-name" disabled>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="update-lob" class="form-label">LOB:</label>
+                                        <input type="text" ng-model="details.LOB" class="form-control" id="update-lob" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="update-email" class="form-label">Site:</label>
+                                        <input type="text" ng-model="details.Site" class="form-control" id="update-email" disabled>
+                                    </div>
+
+                                    <div class="mb-3">
+
+                                        <input ng-model="details.IsActive" type="checkbox" name="status" id="chk-status" /> Is Active?
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <input ng-model="details.isSentEmail" type="checkbox" name="status" id="chk-status" /> Send Email?
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="mb-3">
+                                        <label for="update-last-name" class="form-label">Last Name:</label>
+                                        <input type="text" ng-model="details.Last_Name" class="form-control" id="update-last-name" disabled>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="update-team" class="form-label">Position:</label>
+                                        <input type="text" ng-model="details.Position" class="form-control" id="update-team" disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="update-team" class="form-label">Position Level:</label>
+                                        <input type="text" ng-model="details.Position_Level" class="form-control" id="update-team" disabled>
+                                    </div>
+                                    
+
+
+                                    <div class="mb-3">
+                                        <label for="update-roles" class="form-label">Role:</label>
+                                        <select class="form-select" id="update-roles" ng-model="details.Roles">
+                                            <option value="ADMIN">ADMIN</option>
+                                            <option value="REPORT">REPORT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="UpdateUser2" class="btn btn-secondary" data-bs-dismiss="modal" ng-click="clear()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="UpdateUser()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
